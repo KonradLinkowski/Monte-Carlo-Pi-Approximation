@@ -11,11 +11,15 @@
         <canvas id="canvas" class="main-canvas" width="600" height="600"></canvas>
         <section class="canvas-properties">
           <label for="speed">Points per second: <span id="speed-label">500</span></label>
-          <input id="speed-slider" type="range" name="speed" value="500" min="1" max="1000">
+          <input id="speed-slider" class="slider" type="range" name="speed" value="500" min="1" max="1000">
           <p>PI is equal: <span id="pi-value">0</span></p>
           <p>Points inside circle: <span id="circle-points-number">0</span></p>
           <p>Number of points: <span id="points-number">0</span></p>
-          <button id="start-button" type="button" name="button">Start</button>
+          <div class="button-wrapper">
+            <button id="reset-button" class="button reset" type="button" name="reset-button">Reset</button>
+            <button id="boost-button" class="button boost" type="button" name="boost-button">Boost</button>
+            <button id="start-button" class="button start" type="button" name="start-button">Start</button>
+          </div>
         </section>
       </article>
     </main>
