@@ -2,8 +2,12 @@ const $canvas = document.querySelector('#canvas')
 const ctx = canvas.getContext('2d')
 const $pi = document.querySelector('#pi-value')
 const $number = document.querySelector('#points-number')
+const $circleNumber = document.querySelector('#circle-points-number')
 const $startButton = document.querySelector('#start-button')
 const $speed = document.querySelector('#speed-slider')
+const $speedLabel = document.querySelector('#speed-label')
+
+$canvas.height = $canvas.width = window.innerHeight;
 
 let isPlaying = false
 
@@ -24,7 +28,8 @@ $startButton.addEventListener('click', () => {
   }
 })
 
-$speed.addEventListener('change', () => {
+$speed.addEventListener('input', event => {
+  $speedLabel.innerText = event.target.value
   speed = $speed.value
   if (isPlaying) {
     clearInterval(intervalId)
@@ -42,6 +47,7 @@ function spawnIteration() {
   spawnPoint(x, y)
   $pi.innerText = evalPi(pointsInCircle, numberOfPoints, radius, radius, radius)
   $number.innerText = numberOfPoints
+  $circleNumber.innerText = pointsInCircle
 }
 
 function evalPi(circlePoints, allPoints, x, y, radius) {
@@ -64,13 +70,17 @@ function spawnPoint(x, y) {
 }
 
 function drawSquare(x, y, width, height) {
+  ctx.beginPath()
   ctx.rect(x, y, width, height);
+  ctx.lineWidth = 2;
   ctx.stroke();
+  ctx.closePath()
 }
 
 function drawCircle(x, y, r) {
   ctx.fillStyle = '#DD0000'
   ctx.beginPath()
+  ctx.lineWidth = 2;
   ctx.arc(x, y, r, 0, 2 * Math.PI)
   ctx.stroke()
   ctx.closePath()

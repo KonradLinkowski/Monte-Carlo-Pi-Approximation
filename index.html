@@ -8,12 +8,15 @@
   <body>
     <main>
       <article class="main-content">
-        <h1>Monte Carlo Pi Approximation</h1>
-        <canvas id="canvas" width="300" height="300"></canvas>
-        <input id="speed-slider" type="range" name="speed" value="10" min="1" max="1000">
-        <button id="start-button" type="button" name="button">Start</button>
-        <p>PI is equal: <span id="pi-value"></span></p>
-        <p>Number of points: <span id="points-number"></span></p>
+        <canvas id="canvas" class="main-canvas" width="600" height="600"></canvas>
+        <section class="canvas-properties">
+          <label for="speed">Points per second: <span id="speed-label">500</span></label>
+          <input id="speed-slider" type="range" name="speed" value="500" min="1" max="1000">
+          <p>PI is equal: <span id="pi-value">0</span></p>
+          <p>Points inside circle: <span id="circle-points-number">0</span></p>
+          <p>Number of points: <span id="points-number">0</span></p>
+          <button id="start-button" type="button" name="button">Start</button>
+        </section>
       </article>
     </main>
     <script src="js/main.js" charset="utf-8"></script>
