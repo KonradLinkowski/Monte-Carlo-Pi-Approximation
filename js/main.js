@@ -9,7 +9,8 @@ let isPlaying = false
 
 let intervalId
 
-let points = []
+let numberOfPoints = 0
+let pointsInCircle = 0
 
 let speed = $speed.value
 
@@ -26,7 +27,6 @@ $startButton.addEventListener('click', () => {
 $speed.addEventListener('change', () => {
   speed = $speed.value
   if (isPlaying) {
-    console.log(1000 / speed)
     clearInterval(intervalId)
     intervalId = setInterval(spawnIteration, 1000 / speed)
   }
@@ -40,28 +40,27 @@ function spawnIteration() {
   let x = Math.random() * radius * 2
   let y = Math.random() * radius * 2
   spawnPoint(x, y)
-  points.push({
-    x: x,
-    y: y
-  })
-  $pi.innerText = evalPi(points, radius, radius, radius)
-  $number.innerText = points.length
+  $pi.innerText = evalPi(pointsInCircle, numberOfPoints, radius, radius, radius)
+  $number.innerText = numberOfPoints
 }
 
-function evalPi(points, x, y, radius) {
-  let squareArea = radius * radius * 4
-  let numberOfPoints = points.length
-  let pointsInCircle = 0
-  points.forEach(pnt => {
-    if (isInCircle(x, y, radius, pnt.x, pnt.y)) {
-      pointsInCircle += 1
-    }
-  })
-  return pointsInCircle / numberOfPoints * 4
+function evalPi(circlePoints, allPoints, x, y, radius) {
+  return circlePoints / allPoints * 4
 }
 
 function spawnPoint(x, y) {
-  ctx.fillRect(x, y, 1, 1)
+  numberOfPoints += 1
+  if (isInCircle(radius, radius, radius, x, y)) {
+    pointsInCircle += 1
+    ctx.fillStyle = '#DD0000'
+  } else {
+    ctx.fillStyle = '#000000'
+  }
+  ctx.beginPath()
+  ctx.arc(x, y, 1.5, 0, Math.PI * 2)
+  ctx.fill()
+  ctx.closePath()
+  // ctx.fillRect(x, y, 1, 1)
 }
 
 function drawSquare(x, y, width, height) {
@@ -70,6 +69,7 @@ function drawSquare(x, y, width, height) {
 }
 
 function drawCircle(x, y, r) {
+  ctx.fillStyle = '#DD0000'
   ctx.beginPath()
   ctx.arc(x, y, r, 0, 2 * Math.PI)
   ctx.stroke()
