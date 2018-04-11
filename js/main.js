@@ -9,7 +9,7 @@ const $startButton = document.querySelector('#start-button')
 const $speed = document.querySelector('#speed-slider')
 const $speedLabel = document.querySelector('#speed-label')
 
-$canvas.height = $canvas.width = window.innerHeight;
+$canvas.height = $canvas.width = window.innerHeight > window.innerWidth ? window.innerWidth : window.innerHeight;
 
 let isPlaying = false
 
