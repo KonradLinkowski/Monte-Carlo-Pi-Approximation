@@ -73,12 +73,13 @@ function boost() {
 }
 
 function reset() {
-  let numberOfPoints = 0
-  let pointsInCircle = 0
+  numberOfPoints = 0
+  pointsInCircle = 0
   ctx.clearRect(0, 0, $canvas.width, $canvas.height);
   drawSquare(0, 0, radius * 2, radius * 2)
   drawCircle(radius, radius, radius)
   isPlaying = false
+  clearInterval(intervalId)
   $startButton.innerText = 'Start'
   $pi.innerText = 0
   $number.innerText = 0
