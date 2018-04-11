@@ -17,7 +17,7 @@ $startButton.addEventListener('click', () => {
   isPlaying = !isPlaying
   $startButton.innerText = isPlaying ? 'Stop' : 'Start'
   if (isPlaying) {
-    intervalId = setInterval(spawnIteration, speed)
+    intervalId = setInterval(spawnIteration, 1000 / speed)
   } else {
     clearInterval(intervalId)
   }
@@ -26,8 +26,9 @@ $startButton.addEventListener('click', () => {
 $speed.addEventListener('change', () => {
   speed = $speed.value
   if (isPlaying) {
+    console.log(1000 / speed)
     clearInterval(intervalId)
-    intervalId = setInterval(spawnIteration, speed)
+    intervalId = setInterval(spawnIteration, 1000 / speed)
   }
 })
 
