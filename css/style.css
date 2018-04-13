@@ -76,7 +76,7 @@ body {
   background-color: #4CAF50; /* Green */
   border: none;
   color: white;
-  padding: 15px 32px;
+  padding: 1rem 2rem;
   text-align: center;
   text-decoration: none;
   display: inline-block;
@@ -122,6 +122,10 @@ body {
   }
   
   :root {
-    font-size: 2rem;
+    font-size: 1.4rem;
+  }
+
+  .button {
+    padding: 0.4rem 0.6rem;
   }
 }
